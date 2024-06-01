@@ -84,6 +84,7 @@ public class ParkingServiceTest {
 	when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(1);
 	
 	
+	
 	//WHEN
     parkingService.processIncomingVehicle();
     

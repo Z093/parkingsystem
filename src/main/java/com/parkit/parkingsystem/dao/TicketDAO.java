@@ -89,7 +89,7 @@ public class TicketDAO {
     
     public int getNbTicket(String vehicleRegNumber) {
         Connection con = null;
-        int countTicket = 0;
+        int countTicket = 1;
         try {
             con = dataBaseConfig.getConnection();
             PreparedStatement ps = con.prepareStatement(DBConstants.GET_COUNT_FOR_VEHICLE);
