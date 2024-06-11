@@ -81,13 +81,12 @@ public class ParkingDataBaseIT {
         Thread.sleep(1000);
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processExitingVehicle();
-        //ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
+        
         //TODO: check that the fare generated and out time are populated correctly in the database
         
-        //Ticket ticket = ticketDAO.getTicket("ABCEF");
-        //assertNotNull(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR));
-        assertEquals(dataBasePrepareService.checkSiPrixEtHeureSortieNonNull("ABCDEF"), true);
-        //regarder si y  un bien un ticket dont le prix et l'heure de sortie est different de NULL
+        
+        assertEquals(dataBasePrepareService.checkIfPriceAndHourExitNotNull("ABCDEF"), true);
+        
     }
     
 @Test
@@ -95,16 +94,15 @@ public class ParkingDataBaseIT {
 	
  testParkingACar();
  testParkingLotExit();
- //Thread.sleep(10000);
  ParkingService parkingService =  new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
  parkingService.processIncomingVehicle();
  Thread.sleep(10000);
  parkingService.processExitingVehicle();
- //ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,true);
+ 
  //TODO: check that the fare generated and out time are populated correctly in the database
         
- //assertNotNull(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR));       
- assertEquals(dataBasePrepareService.checkSiPrixEtHeureSortieNonNull("ABCDEF"), true);       
+      
+ assertEquals(dataBasePrepareService.checkIfPriceAndHourExitNotNull("ABCDEF"), true);       
  
     	
     } 

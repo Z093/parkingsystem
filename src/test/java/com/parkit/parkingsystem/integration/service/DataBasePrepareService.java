@@ -30,10 +30,9 @@ public class DataBasePrepareService {
         }
     }
     
-    public boolean checkSiPrixEtHeureSortieNonNull(String parkingNumber) {
+    public boolean checkIfPriceAndHourExitNotNull(String parkingNumber) {
         try(Connection connection = dataBaseTestConfig.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement(
-            		"select count(*) from ticket where VEHICLE_REG_NUMBER = ? and PRICE is not null and OUT_TIME is not null");
+            PreparedStatement ps = connection.prepareStatement(DBConstants.GET_COUNT_NOT_NULL);
             ps.setString(1, parkingNumber);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
