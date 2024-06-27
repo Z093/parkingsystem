@@ -75,10 +75,8 @@ public class ParkingService {
         try{
             ParkingType parkingType = getVehichleType();
             parkingNumber = parkingSpotDAO.getNextAvailableSlot(parkingType);
-            //System.out.println("test:" + parkingNumber );
             if(parkingNumber > 0){
                 parkingSpot = new ParkingSpot(parkingNumber,parkingType, true);
-                //System.out.println("test2:" + parkingNumber );
             }else{
                 throw new Exception("Error fetching parking number from DB. Parking slots might be full");
             }
@@ -95,7 +93,6 @@ public class ParkingService {
         System.out.println("1 CAR");
         System.out.println("2 BIKE");
         int input = inputReaderUtil.readSelection();
-        //System.out.println("test:" + input );
         switch(input){
             case 1: {
                 return ParkingType.CAR;
@@ -130,10 +127,11 @@ public class ParkingService {
                 	//System.out.print("nbticket: " + nbTickets + " ");
                 	fareCalculatorService.calculateFare(ticket, false);
                 }
-                
-                System.out.println("Please pay the parking fare: " + ticket.getPrice());
+                //ticketDAO.updateTicket(ticket);
+                //System.out.println("Please pay the parking fare: " + ticket.getPrice());
                 System.out.println("Recorded out-time for vehicle number:" + ticket.getVehicleRegNumber() + " is: " + outTime);
-                
+                System.out.println("Please pay the parking fare: " + ticket.getPrice());
+                ticketDAO.updateTicket(ticket);
                 
             }
             else{

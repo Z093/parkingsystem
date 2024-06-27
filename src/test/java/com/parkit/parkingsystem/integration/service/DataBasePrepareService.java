@@ -2,7 +2,6 @@ package com.parkit.parkingsystem.integration.service;
 
 import com.parkit.parkingsystem.constants.DBConstants;
 import com.parkit.parkingsystem.integration.config.DataBaseTestConfig;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,6 +46,23 @@ public class DataBasePrepareService {
         	return false;
         }
     }
-
-
+    
+   
+    
+    
+    public void checkIfPriceNotNullInDataBase(int id) throws Exception {
+        try(Connection connection = dataBaseTestConfig.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(DBConstants.UPDATE_TICKET_IN_TIME);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            }
+        
+            
+            	
+        }
 }
+    
+    
+
+
+

@@ -13,7 +13,6 @@ public class FareCalculatorService {
 
         long inHour = ticket.getInTime().getTime();
         long outHour = ticket.getOutTime().getTime();
-        //this.discount = discount;
         System.out.println(discount);
          double discountAmount = 1;
          if (discount) {
@@ -29,7 +28,8 @@ public class FareCalculatorService {
             		ticket.setPrice(0);	
             	}
             	else {
-            		ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR * discountAmount);
+            		ticket.setPrice((duration / 60 /60 /1000)  * Fare.CAR_RATE_PER_HOUR * discountAmount);
+            		 
             	}
                 break;
             }
@@ -38,7 +38,7 @@ public class FareCalculatorService {
             		ticket.setPrice(0);	
             	}
             	else {
-            		ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR * discountAmount);
+            		ticket.setPrice((duration / 60 /60 /1000) * Fare.BIKE_RATE_PER_HOUR * discountAmount);
             	}
 
                 break;
