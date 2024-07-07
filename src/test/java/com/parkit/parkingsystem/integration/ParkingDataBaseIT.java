@@ -1,6 +1,5 @@
 package com.parkit.parkingsystem.integration;
 
-import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.dao.ParkingSpotDAO;
 import com.parkit.parkingsystem.dao.TicketDAO;
@@ -90,12 +89,13 @@ public class ParkingDataBaseIT {
         dataBasePrepareService.checkIfPriceNotNullInDataBase(1);
         
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
+        Thread.sleep(1000);
         parkingService.processExitingVehicle();
         //TODO: check that the fare generated and out time are populated correctly in the database
         
-        //assertEquals(FareCalculatorService.calculateFare());
-        //assertEquals(dataBasePrepareService.checkIfPriceIsGood(Fare.CAR_RATE_PER_HOUR), true);
+        
         assertEquals(dataBasePrepareService.checkIfPriceAndHourExitNotNull("ABCDEF"), true);
+        
         
 
         
@@ -104,19 +104,40 @@ public class ParkingDataBaseIT {
 @Test
   public void testParkingLotExitRecurringUser() throws Exception {
 	
- testParkingACar();
+ 
  testParkingLotExit();
  ParkingService parkingService =  new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
  parkingService.processIncomingVehicle();
- Thread.sleep(10000);
+ Thread.sleep(1000);
  parkingService.processExitingVehicle();
  
  //TODO: check that the fare generated and out time are populated correctly in the database
         
       
- assertEquals(dataBasePrepareService.checkIfPriceAndHourExitNotNull("ABCDEF"), true);       
+ assertEquals(dataBasePrepareService.checkIfPriceAndHourExitNotNull("ABCDEF"), true);
+ 
  
     	
     } 
+
+@Test
+public void testParkingLotExitRecurringUserWithPrice() throws Exception {
+	
+
+testParkingLotExit();
+ParkingService parkingService =  new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
+parkingService.processIncomingVehicle();
+dataBasePrepareService.checkIfPriceNotNullInDataBase(2);
+Thread.sleep(1000);
+parkingService.processExitingVehicle();
+
+
+//TODO: check that the fare generated and out time are populated correctly in the database
+      
+    
+assertEquals(dataBasePrepareService.checkIfPriceAndHourExitNotNull("ABCDEF"), true);       
+
+  	
+  } 
 
 }

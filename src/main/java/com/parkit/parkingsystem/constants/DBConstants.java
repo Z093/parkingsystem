@@ -11,5 +11,4 @@ public class DBConstants {
     public static final String GET_COUNT_FOR_VEHICLE = "SELECT COUNT(*) FROM TICKET WHERE VEHICLE_REG_NUMBER = ?";
     public static final String GET_COUNT_NOT_NULL = "SELECT COUNT(*) FROM TICKET WHERE VEHICLE_REG_NUMBER = ? AND PRICE IS NOT NULL AND OUT_TIME IS NOT NULL";
     public static final String UPDATE_TICKET_IN_TIME = "update ticket set IN_TIME=DATE_SUB(IN_TIME, INTERVAL 1 HOUR) where ID=?";
-    public static final String UPDATE_PRICE = "update ticket set PRICE=? where ID=?";
 }

@@ -51,9 +51,9 @@ public class ParkingService {
                 ticket.setInTime(inTime);
                 ticket.setOutTime(null);
                 ticketDAO.saveTicket(ticket);
-                if (nbTickets > 1) {
+                if (nbTickets > 0) {
                 	System.out.print("Heureux de vous revoir ! En tant qu’utilisateur régulier de notre parking, vous allez obtenir une remise de 5% \n");
-                	//fareCalculatorService.calculateFare(ticket, true);
+                	
                 }
                 System.out.println("Generated Ticket and saved in DB");
                 System.out.println("Please park your vehicle in spot number: "+parkingSpot.getId());
@@ -120,17 +120,17 @@ public class ParkingService {
                 parkingSpot.setAvailable(true);
                 parkingSpotDAO.updateParking(parkingSpot);
                 if (nbTickets > 1) {
-                	//System.out.print("nbticket: " + nbTickets + " ");
+                	
                 	fareCalculatorService.calculateFare(ticket, true);
                 }
                 else {
-                	//System.out.print("nbticket: " + nbTickets + " ");
+                	
                 	fareCalculatorService.calculateFare(ticket, false);
                 }
-                //ticketDAO.updateTicket(ticket);
-                //System.out.println("Please pay the parking fare: " + ticket.getPrice());
+                
                 System.out.println("Recorded out-time for vehicle number:" + ticket.getVehicleRegNumber() + " is: " + outTime);
                 System.out.println("Please pay the parking fare: " + ticket.getPrice());
+                
                 ticketDAO.updateTicket(ticket);
                 
             }
